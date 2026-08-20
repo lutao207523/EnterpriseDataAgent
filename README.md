@@ -1,5 +1,3 @@
-# Enterprise Report Agent
-
 这是从 Craft Agents 的 Pi Agent/工具注册思路中抽出的轻量化企业数据 Agent。它既能进行基础对话和通用问答，也能在识别到报表分析意图后调用 CSV/Excel 工具。项目提供本地图形界面，可拖拽上传报表并通过聊天框输入问题。
 
 ## 能力
@@ -16,7 +14,8 @@
 ## 图形界面运行
 
 最简单的方法：双击项目根目录中的 `start-app.vbs`。程序会在后台启动本地服务并自动打开浏览器，不显示黑色命令行窗口。
-![Uploading 120136858e4cd765b96b21b755faeb69.png…]()
+<img width="1836" height="854" alt="exampe1" src="https://github.com/user-attachments/assets/96f65041-d62a-4be4-8a66-91f87ca75187" />
+
 
 
 需要停止后台服务时，双击 `stop-app.vbs`。
