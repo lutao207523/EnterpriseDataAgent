@@ -1,0 +1,244 @@
+{
+  "question": "销售金额最高的是哪个商品",
+  "summary": "销售金额(元)最高的商品是“保湿面霜50g”。",
+  "generatedAt": "2026-08-14T07:53:33.019Z",
+  "dataSources": [
+    {
+      "path": "C:\\Users\\admin\\Documents\\Codex\\2026-08-14\\craft-agent-agent-csv-excel-agent\\runs\\2026-08-14T07-33-37-234Z-bec57060\\input\\2026年8月电商商品销售金额统计表.xlsx",
+      "sheet": "2026年8月销售明细"
+    }
+  ],
+  "fieldMappings": [
+    {
+      "input": "销售额",
+      "sourceField": "销售金额(元)",
+      "semanticType": "metric",
+      "confidence": 0.82,
+      "evidence": [
+        "local-wiki:销售额|金额|销售金额|成交金额|营收|销售收入|revenue|sales"
+      ],
+      "formula": "sum"
+    },
+    {
+      "input": "产品",
+      "sourceField": "商品名称",
+      "semanticType": "dimension",
+      "confidence": 1,
+      "evidence": [
+        "local-wiki:产品|商品|商品名称|产品名称|product name|product"
+      ]
+    }
+  ],
+  "assumptions": [
+    "业务字段依据 LLM Wiki 映射。",
+    "默认对指标使用求和；问题包含“平均/均值”时使用平均值。"
+  ],
+  "profile": {
+    "rowCount": 12,
+    "columnCount": 6,
+    "columns": [
+      {
+        "name": "商品编号",
+        "type": "text",
+        "sample": [
+          "SP001",
+          "SP002",
+          "SP003",
+          "SP004",
+          "SP005"
+        ],
+        "missing": 0,
+        "unique": 12
+      },
+      {
+        "name": "商品名称",
+        "type": "text",
+        "sample": [
+          "无线蓝牙耳机",
+          "智能手表",
+          "移动电源20000mAh",
+          "手机快充充电器",
+          "纯棉四件套"
+        ],
+        "missing": 0,
+        "unique": 12
+      },
+      {
+        "name": "商品分类",
+        "type": "text",
+        "sample": [
+          "数码电子",
+          "数码电子",
+          "数码电子",
+          "数码电子",
+          "家居日用"
+        ],
+        "missing": 0,
+        "unique": 4
+      },
+      {
+        "name": "单价(元)",
+        "type": "number",
+        "sample": [
+          199,
+          599,
+          129,
+          69,
+          259
+        ],
+        "missing": 0,
+        "unique": 12
+      },
+      {
+        "name": "本月销量(件)",
+        "type": "number",
+        "sample": [
+          856,
+          312,
+          1240,
+          2150,
+          478
+        ],
+        "missing": 0,
+        "unique": 12
+      },
+      {
+        "name": "销售金额(元)",
+        "type": "number",
+        "sample": [
+          170344,
+          186888,
+          159960,
+          148350,
+          123802
+        ],
+        "missing": 0,
+        "unique": 12
+      }
+    ]
+  },
+  "plan": {
+    "question": "销售金额最高的是哪个商品",
+    "operation": "rank",
+    "responseMode": "entity",
+    "dimensions": [
+      "商品名称"
+    ],
+    "metrics": [
+      {
+        "field": "销售金额(元)",
+        "aggregation": "sum"
+      }
+    ],
+    "limit": 50,
+    "order": "desc",
+    "fieldMappings": [
+      {
+        "input": "销售额",
+        "sourceField": "销售金额(元)",
+        "semanticType": "metric",
+        "confidence": 0.82,
+        "evidence": [
+          "local-wiki:销售额|金额|销售金额|成交金额|营收|销售收入|revenue|sales"
+        ],
+        "formula": "sum"
+      },
+      {
+        "input": "产品",
+        "sourceField": "商品名称",
+        "semanticType": "dimension",
+        "confidence": 1,
+        "evidence": [
+          "local-wiki:产品|商品|商品名称|产品名称|product name|product"
+        ]
+      }
+    ],
+    "assumptions": [
+      "业务字段依据 LLM Wiki 映射。",
+      "默认对指标使用求和；问题包含“平均/均值”时使用平均值。"
+    ]
+  },
+  "resultTables": [
+    {
+      "title": "分析结果",
+      "rows": [
+        {
+          "商品名称": "保湿面霜50g",
+          "销售金额(元)": 206955,
+          "记录数": 1
+        },
+        {
+          "商品名称": "智能手表",
+          "销售金额(元)": 186888,
+          "记录数": 1
+        },
+        {
+          "商品名称": "无线蓝牙耳机",
+          "销售金额(元)": 170344,
+          "记录数": 1
+        },
+        {
+          "商品名称": "移动电源20000mAh",
+          "销售金额(元)": 159960,
+          "记录数": 1
+        },
+        {
+          "商品名称": "坚果大礼包",
+          "销售金额(元)": 154440,
+          "记录数": 1
+        },
+        {
+          "商品名称": "保温杯500ml",
+          "销售金额(元)": 149520,
+          "记录数": 1
+        },
+        {
+          "商品名称": "手机快充充电器",
+          "销售金额(元)": 148350,
+          "记录数": 1
+        },
+        {
+          "商品名称": "氨基酸洁面乳",
+          "销售金额(元)": 143780,
+          "记录数": 1
+        },
+        {
+          "商品名称": "口红礼盒套装",
+          "销售金额(元)": 135548,
+          "记录数": 1
+        },
+        {
+          "商品名称": "纯棉四件套",
+          "销售金额(元)": 123802,
+          "记录数": 1
+        },
+        {
+          "商品名称": "精品挂耳咖啡",
+          "销售金额(元)": 105910,
+          "记录数": 1
+        },
+        {
+          "商品名称": "香薰蜡烛礼盒",
+          "销售金额(元)": 98434,
+          "记录数": 1
+        }
+      ]
+    }
+  ],
+  "charts": [],
+  "warnings": [],
+  "provenance": [
+    {
+      "operation": "rank",
+      "dimensions": [
+        "商品名称"
+      ],
+      "metrics": [
+        {
+          "field": "销售金额(元)",
+          "aggregation": "sum"
+        }
+      ]
+    }
+  ]
+}

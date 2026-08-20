@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>企业数据 Agent</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">EA</div>
+        <div><h1>企业数据 Agent</h1><p>通用问答与报表分析</p></div>
+      </div>
+
+      <section class="source-panel" aria-labelledby="source-title">
+        <div class="section-heading"><h2 id="source-title">数据源</h2><span id="source-status" class="status-dot" title="等待上传"></span></div>
+        <label id="drop-zone" class="drop-zone" for="file-input" tabindex="0">
+          <span class="upload-symbol" aria-hidden="true">↑</span>
+          <strong>拖入报表文件</strong>
+          <span>或点击选择文件</span>
+          <small>CSV、TSV、XLSX、XLSM、XLSB</small>
+        </label>
+        <input id="file-input" type="file" accept=".csv,.tsv,.xlsx,.xlsm,.xlsb" hidden>
+        <div id="file-card" class="file-card" hidden>
+          <div class="file-icon" aria-hidden="true">XL</div>
+          <div class="file-copy"><strong id="file-name"></strong><span id="file-size"></span></div>
+          <button id="remove-file" class="icon-button" type="button" title="移除文件" aria-label="移除文件">×</button>
+        </div>
+      </section>
+
+      <section class="model-panel" aria-labelledby="model-title">
+        <div class="section-heading">
+          <h2 id="model-title">通用模型</h2>
+          <span id="model-status" class="model-status">未配置</span>
+        </div>
+        <p id="model-description">基础问候可直接使用，更多通用问题需要配置模型。</p>
+        <button id="open-settings" class="sidebar-button" type="button">模型设置</button>
+      </section>
+
+      <section class="source-panel compact">
+        <h2>分析流程</h2>
+        <ol class="workflow">
+          <li><span>1</span>识别表格结构</li>
+          <li><span>2</span>匹配业务字段</li>
+          <li><span>3</span>计算并校验结果</li>
+          <li><span>4</span>生成图表与报告</li>
+        </ol>
+      </section>
+      <div class="sidebar-footer"><span class="privacy-indicator"></span>文件仅在本机处理</div>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <div><h2>企业数据助手</h2><p id="active-source">可直接聊天，也可以上传报表进行分析</p></div>
+        <button id="new-analysis" class="secondary-button" type="button">新对话</button>
+      </header>
+
+      <section id="conversation" class="conversation" aria-live="polite">
+        <div class="message assistant-message">
+          <div class="avatar">AI</div>
+          <div class="message-body">
+            <p>你好。我可以回答一般问题；上传 CSV 或 Excel 后，也可以根据你的要求调用数据分析工具。</p>
+            <div class="suggestions">
+              <button type="button">你能做什么？</button>
+              <button type="button">按区域统计销售额和利润</button>
+              <button type="button">找出销售额最高的产品</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="composer-wrap">
+        <div class="composer">
+          <textarea id="question" rows="1" placeholder="输入问题，或上传报表后提出数据分析要求"></textarea>
+          <button id="send-button" class="send-button" type="button" title="发送" aria-label="发送">↑</button>
+        </div>
+        <p class="composer-note">Enter 发送，Shift + Enter 换行</p>
+      </footer>
+    </main>
+  </div>
+
+  <dialog id="settings-dialog" class="settings-dialog">
+    <form id="settings-form" method="dialog">
+      <div class="dialog-heading">
+        <div><h2>通用模型设置</h2><p>支持 OpenAI 兼容的 Chat Completions 接口</p></div>
+        <button id="close-settings" class="icon-button dialog-close" type="button" title="关闭" aria-label="关闭">×</button>
+      </div>
+      <label>API 地址<input id="api-base-url" name="baseUrl" type="url" placeholder="https://api.openai.com/v1" required></label>
+      <label>模型名称<input id="api-model" name="model" type="text" placeholder="例如：gpt-4.1-mini"></label>
+      <label>API Key<input id="api-key" name="apiKey" type="password" placeholder="已配置时留空可保留原 Key"></label>
+      <p id="settings-error" class="settings-error" role="alert"></p>
+      <div class="dialog-actions">
+        <button id="cancel-settings" class="secondary-button" type="button">取消</button>
+        <button class="primary-button" type="submit">保存设置</button>
+      </div>
+    </form>
+  </dialog>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

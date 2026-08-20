@@ -1,0 +1,223 @@
+{
+  "question": "按区域统计销售额和利润，找出销售额最高的区域",
+  "summary": "区域“华东”的销售额最高，为 255,000，同时利润 51,000。本次结果共包含 3 个分组。",
+  "generatedAt": "2026-08-14T06:54:13.967Z",
+  "dataSources": [
+    {
+      "path": "C:\\Users\\admin\\Documents\\Codex\\2026-08-14\\craft-agent-agent-csv-excel-agent\\examples\\sales.csv",
+      "sheet": "default"
+    }
+  ],
+  "fieldMappings": [
+    {
+      "input": "销售额",
+      "sourceField": "销售额",
+      "semanticType": "metric",
+      "confidence": 1,
+      "evidence": [
+        "local-wiki:销售额|营收|销售收入|revenue|sales"
+      ],
+      "formula": "sum"
+    },
+    {
+      "input": "利润",
+      "sourceField": "利润",
+      "semanticType": "metric",
+      "confidence": 1,
+      "evidence": [
+        "local-wiki:利润|净利润|利润额|profit"
+      ],
+      "formula": "sum"
+    },
+    {
+      "input": "区域",
+      "sourceField": "区域",
+      "semanticType": "dimension",
+      "confidence": 1,
+      "evidence": [
+        "local-wiki:区域|地区|大区|region"
+      ]
+    }
+  ],
+  "assumptions": [
+    "业务字段依据 LLM Wiki 映射。",
+    "默认对指标使用求和；问题包含“平均/均值”时使用平均值。"
+  ],
+  "profile": {
+    "rowCount": 6,
+    "columnCount": 5,
+    "columns": [
+      {
+        "name": "日期",
+        "type": "date",
+        "sample": [
+          "2025-01",
+          "2025-01",
+          "2025-01",
+          "2025-02",
+          "2025-02"
+        ],
+        "missing": 0,
+        "unique": 2
+      },
+      {
+        "name": "区域",
+        "type": "text",
+        "sample": [
+          "华东",
+          "华南",
+          "华北",
+          "华东",
+          "华南"
+        ],
+        "missing": 0,
+        "unique": 3
+      },
+      {
+        "name": "产品",
+        "type": "text",
+        "sample": [
+          "A产品",
+          "A产品",
+          "B产品",
+          "B产品",
+          "C产品"
+        ],
+        "missing": 0,
+        "unique": 3
+      },
+      {
+        "name": "销售额",
+        "type": "number",
+        "sample": [
+          "120000",
+          "95000",
+          "88000",
+          "135000",
+          "102000"
+        ],
+        "missing": 0,
+        "unique": 6
+      },
+      {
+        "name": "利润",
+        "type": "number",
+        "sample": [
+          "24000",
+          "18000",
+          "15000",
+          "27000",
+          "21000"
+        ],
+        "missing": 0,
+        "unique": 6
+      }
+    ]
+  },
+  "plan": {
+    "question": "按区域统计销售额和利润，找出销售额最高的区域",
+    "operation": "rank",
+    "dimensions": [
+      "区域"
+    ],
+    "metrics": [
+      {
+        "field": "销售额",
+        "aggregation": "sum"
+      },
+      {
+        "field": "利润",
+        "aggregation": "sum"
+      }
+    ],
+    "limit": 50,
+    "order": "desc",
+    "fieldMappings": [
+      {
+        "input": "销售额",
+        "sourceField": "销售额",
+        "semanticType": "metric",
+        "confidence": 1,
+        "evidence": [
+          "local-wiki:销售额|营收|销售收入|revenue|sales"
+        ],
+        "formula": "sum"
+      },
+      {
+        "input": "利润",
+        "sourceField": "利润",
+        "semanticType": "metric",
+        "confidence": 1,
+        "evidence": [
+          "local-wiki:利润|净利润|利润额|profit"
+        ],
+        "formula": "sum"
+      },
+      {
+        "input": "区域",
+        "sourceField": "区域",
+        "semanticType": "dimension",
+        "confidence": 1,
+        "evidence": [
+          "local-wiki:区域|地区|大区|region"
+        ]
+      }
+    ],
+    "assumptions": [
+      "业务字段依据 LLM Wiki 映射。",
+      "默认对指标使用求和；问题包含“平均/均值”时使用平均值。"
+    ]
+  },
+  "resultTables": [
+    {
+      "title": "分析结果",
+      "rows": [
+        {
+          "区域": "华东",
+          "销售额": 255000,
+          "利润": 51000,
+          "记录数": 2
+        },
+        {
+          "区域": "华南",
+          "销售额": 197000,
+          "利润": 39000,
+          "记录数": 2
+        },
+        {
+          "区域": "华北",
+          "销售额": 179000,
+          "利润": 31000,
+          "记录数": 2
+        }
+      ]
+    }
+  ],
+  "charts": [
+    {
+      "type": "bar",
+      "title": "销售额按区域",
+      "svg": "chart.svg",
+      "mermaid": "chart.mmd"
+    }
+  ],
+  "warnings": [],
+  "provenance": [
+    {
+      "operation": "rank",
+      "dimensions": [
+        "区域"
+      ],
+      "metrics": [
+        {
+          "field": "销售额",
+          "aggregation": "sum"
+        },
+        {
+          "field": "利润",
+          "aggregation": "sum"
+        }
+      ]
+    }
+  ]
+}

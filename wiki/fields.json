@@ -1,0 +1,11 @@
+{
+  "terms": [
+    {"name":"销售额","aliases":["金额","销售金额","成交金额","营收","销售收入","revenue","sales"],"semanticType":"metric","formula":"sum"},
+    {"name":"利润","aliases":["净利润","利润额","profit"],"semanticType":"metric","formula":"sum"},
+    {"name":"利润率","aliases":["毛利率","净利率","margin"],"semanticType":"metric","formula":"ratio"},
+    {"name":"区域","aliases":["地区","大区","region"],"semanticType":"dimension"},
+    {"name":"产品","aliases":["商品","商品名称","产品名称","product name","product"],"semanticType":"dimension"},
+    {"name":"客户","aliases":["客户名称","customer"],"semanticType":"dimension"},
+    {"name":"日期","aliases":["时间","月份","月","date","month"],"semanticType":"time"}
+  ]
+}

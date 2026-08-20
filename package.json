@@ -1,0 +1,19 @@
+{
+  "name": "enterprise-report-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Natural-language CSV/Excel analysis agent derived from Craft Agents concepts.",
+  "scripts": {
+    "start": "node src/server.js",
+    "gui": "node src/server.js",
+    "cli": "node src/cli.js",
+    "analyze": "node src/cli.js",
+    "test": "node --test"
+  },
+  "optionalDependencies": {
+    "@earendil-works/pi-agent-core": "0.80.6",
+    "@earendil-works/pi-coding-agent": "0.80.6",
+    "xlsx": "^0.18.5"
+  }
+}
